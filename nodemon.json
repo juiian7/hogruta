@@ -1,0 +1,6 @@
+{
+    "ignore": ["dist/*"],
+    "watch": ["src", "engine"],
+    "ext": "ts",
+    "exec": "tsc"
+}
