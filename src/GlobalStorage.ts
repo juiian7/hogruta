@@ -18,7 +18,6 @@ export default class GlobalStorage {
                 this[key] = json[key];
             }
         }
-        this.currentLevelName = "level18";
 
         setLang(this._lang);
     }
