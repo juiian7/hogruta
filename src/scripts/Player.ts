@@ -138,11 +138,11 @@ export default class Player extends Entity {
                 this.velY = -this.jumpForce;
             } else {
                 let tile = this.tilemap.getTile(Math.floor((this.x + (this.facingRight ? 6 : -2)) / 8), Math.floor((this.y + 2) / 8));
-                let t = this.tilemap.getTile(Math.floor(this.x / 8), Math.floor(this.y / 8));
+
                 if (
                     (this.touchingLeftWall ||
                         this.touchingRightWall ||
-                        (tile && tile.isMesh && tile.name != "spike" && tile.name != "finish" && t && t.name != "spike")) &&
+                        (tile && tile.isMesh && !tile.name.includes("spike") && tile.name != "finish")) &&
                     this.velY > 0
                 ) {
                     this.velY = -this.jumpForce;
