@@ -115,6 +115,7 @@ export default class SpriteLoader {
 
     async loadLevelSprites() {
         let names = levelMetaDatas.filter((m) => m.spriteName).map((meta) => meta.spriteName);
+        names = [...new Set(names)];
 
         let levelPromises = [];
         for (const name of names) {
