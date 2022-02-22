@@ -164,7 +164,7 @@ export default function initLevels(levelMetaData: LevelMetaData[]) {
         name: "level14",
         spriteName: "14",
         previous: getLevelMetaData("level13"),
-        next: (lvl: Level) => getLevelMetaData("summit"),
+        next: (lvl: Level) => getLevelMetaData("level15"),
     });
     levelMetaData.push({
         name: "level15",
