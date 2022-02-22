@@ -12,7 +12,6 @@ export default class Credits extends Level {
     onLoad(): void {
         apate.camera(0, 0);
 
-        /*
         this.pages.push({ duration: 3000, lines: [{ text: "Hogruta", y: 48, scale: 3, color: Color.white }] });
         this.pages.push({
             duration: 5000,
@@ -21,7 +20,6 @@ export default class Credits extends Level {
                 { text: "ZupaJul", y: 64, scale: 3, color: Color.white },
             ],
         });
-        */
         this.pages.push({
             duration: 5000,
             lines: [
@@ -29,6 +27,16 @@ export default class Credits extends Level {
                 { text: "HaQmi", y: 48, scale: 3, color: Color.white },
                 { text: "and", y: 68, scale: 1, color: Color.white },
                 { text: "Rex", y: 78, scale: 3, color: Color.white },
+            ],
+        });
+        this.pages.push({
+            duration: 5000,
+            lines: [
+                { text: "Special thanks to", y: 30, scale: 1, color: Color.white },
+                { text: "2steve2", y: 44, scale: 2, color: Color.white },
+                { text: "GreyWolf", y: 62, scale: 2, color: Color.white },
+                { text: "FischoHD", y: 80, scale: 2, color: Color.white },
+                { text: "And all other Testers", y: 108, scale: 1, color: Color.white },
             ],
         });
     }
