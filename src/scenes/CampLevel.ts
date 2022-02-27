@@ -33,6 +33,7 @@ class Stranger extends Entity {
 
         this.player = player;
 
+        // while jumping skip cutscene
         if (apate.input.isButtonDown(Button.action1)) {
             this.doUpdate = false;
             apate.input.on(Button.action1, "up", () => {

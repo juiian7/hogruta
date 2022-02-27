@@ -4,6 +4,7 @@ import Transition from "./scripts/LevelTransition.js";
 import SpriteLoader from "./SpriteLoader.js";
 import LevelLoader from "./LevelLoader.js";
 import GlobalStorage from "./GlobalStorage.js";
+import { pause } from "./scenes/Level.js";
 
 export const transition = new Transition();
 export const apate = new Apate();
@@ -17,7 +18,17 @@ apate.random.seed = 42;
 
 document.querySelector("#main").append(apate.htmlElement);
 
-apate.input.addButton(new Button("checkpoint", ["KeyE"], 4));
+apate.input.addButton(new Button("checkpoint", ["KeyE"], 3));
+apate.input.addButton(new Button("restart", ["KeyP"], 4));
+
+export function restart() {
+    globalStorage.reset();
+    levelLoader.currentLevel = null;
+    levelLoader.loadNext();
+    apate.input.clearRegisteredButtons();
+
+    pause.isPaused = false;
+}
 
 export const spriteLoader = new SpriteLoader();
 export const levelLoader = new LevelLoader();

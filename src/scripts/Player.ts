@@ -1,4 +1,16 @@
-import { apate, Color, DrawLib, Entity, globalStorage, levelLoader, ParticleSystem, spriteLoader, transition } from "../game.js";
+import {
+    apate,
+    Button,
+    Color,
+    DrawLib,
+    Entity,
+    globalStorage,
+    levelLoader,
+    ParticleSystem,
+    restart,
+    spriteLoader,
+    transition,
+} from "../game.js";
 import { LevelData } from "../LevelLoader.js";
 import Tilemap, { Tile } from "./Tilemap.js";
 
@@ -42,6 +54,7 @@ export default class Player extends Entity {
     public facingRight: boolean = true;
 
     public canTeleport: boolean = false;
+    private canThrow: boolean = false;
     public isTeleporting: boolean = false;
     private teleportSpeed: number = 8;
     private teleportY: number = 0;
@@ -82,6 +95,10 @@ export default class Player extends Entity {
                     this.die();
                 }
             }
+        });
+
+        apate.input.on(apate.input.getButton("restart"), "down", () => {
+            restart();
         });
     }
 
@@ -171,15 +188,18 @@ export default class Player extends Entity {
             else if (this.touchingRightWall) this.facingRight = false;
         }
 
-        if (this.handleInput && (apate.input.isButtonDown("action2") || apate.input.isMousePressed) && this.canTeleport) {
-            this.canTeleport = false;
-            this.isTeleporting = true;
+        if (this.handleInput && (apate.input.isButtonDown("action2") || apate.input.isMousePressed)) {
+            if (this.canTeleport && this.canThrow) {
+                this.canTeleport = false;
+                this.canThrow = false;
+                this.isTeleporting = true;
 
-            this.teleportX = this.x + 4;
-            this.teleportY = this.y + 4;
+                this.teleportX = this.x + 4;
+                this.teleportY = this.y + 4;
 
-            this.teleportingRight = this.facingRight;
-        }
+                this.teleportingRight = this.facingRight;
+            }
+        } else this.canThrow = true;
 
         if (this.facingRight) this.spriteOffsetX = 3;
         else this.spriteOffsetX = 1;

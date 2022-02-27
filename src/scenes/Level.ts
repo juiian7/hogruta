@@ -4,7 +4,10 @@ import Player from "../scripts/Player.js";
 import { Tile } from "../scripts/Tilemap.js";
 import CameraFollow from "../scripts/CameraFollow.js";
 import Door from "../scripts/Door.js";
+import Pause from "../scripts/Pause.js";
 import { LevelData, LevelMetaData } from "../LevelLoader.js";
+
+export const pause = new Pause();
 
 export default class Level extends Scene {
     public readonly data: LevelData;
@@ -24,6 +27,9 @@ export default class Level extends Scene {
     onLoad() {
         apate.random.seed = 42;
         if (this.data) this.applyLevelData(this.data);
+
+        pause.setLevel(this);
+        this.add(pause);
     }
 
     applyLevelData(lvlData: LevelData) {
