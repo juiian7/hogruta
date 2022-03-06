@@ -1,5 +1,6 @@
 import {
     apate,
+    audio,
     Button,
     Color,
     DrawLib,
@@ -402,6 +403,8 @@ export default class Player extends Entity {
     die() {
         this.isDead = true;
         globalStorage.playerDied();
+
+        audio.playTrack("dead");
 
         for (let i = 0; i < 20; i++) {
             this.partilces.spawn({

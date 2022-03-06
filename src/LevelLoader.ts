@@ -1,4 +1,4 @@
-import { apate, Color, colorlib, globalStorage, spriteLoader } from "./game.js";
+import { apate, audio, Color, colorlib, globalStorage, spriteLoader } from "./game.js";
 import initLevels from "./scenes/index.js";
 import Level from "./scenes/Level.js";
 import Start from "./scenes/Start.js";
@@ -35,8 +35,20 @@ export default class LevelLoader {
 
     constructor() {}
 
+    private restartCounter = 0;
     async load(meta: LevelMetaData) {
+        if (!meta) {
+            console.warn("Skipping level since its undefined");
+            return;
+        }
         console.info("Loading: " + meta.name + "...");
+
+        if (this.lastLevel) {
+            if (meta.name == this.lastLevel.meta.name) this.restartCounter++;
+            else this.restartCounter = 0;
+
+            audio.isFilterActive = this.restartCounter > 5;
+        }
 
         this.lastLevel = this.currentLevel;
 
@@ -86,6 +98,10 @@ export default class LevelLoader {
         if (this.currentLevel.meta.previous) this.load(this.currentLevel.meta.previous);
     }
     async restart() {
+        if (!this.currentLevel) {
+            console.warn("Cannot restart level");
+            return;
+        }
         this.load(this.currentLevel.meta);
     }
 }

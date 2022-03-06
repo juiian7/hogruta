@@ -4,6 +4,7 @@ import Transition from "./scripts/LevelTransition.js";
 import SpriteLoader from "./SpriteLoader.js";
 import LevelLoader from "./LevelLoader.js";
 import GlobalStorage from "./GlobalStorage.js";
+import Audio from "./Audio.js";
 import { pause } from "./scenes/Level.js";
 
 export const transition = new Transition();
@@ -32,6 +33,7 @@ export function restart() {
 
 export const spriteLoader = new SpriteLoader();
 export const levelLoader = new LevelLoader();
+export const audio = new Audio();
 
 export var globalStorage = new GlobalStorage();
 
