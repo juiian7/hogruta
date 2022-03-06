@@ -57,7 +57,6 @@ export default class Pause extends Entity {
 
     public togglePause() {
         this.isPaused = !this.isPaused;
-        console.log("pauseed: " + this.isPaused);
 
         this.lvl.data.player.doUpdate = !this.isPaused;
         if (this.snowflakes) this.snowflakes.doUpdate = !this.isPaused;

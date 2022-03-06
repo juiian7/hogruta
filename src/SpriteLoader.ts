@@ -11,8 +11,8 @@ export default class SpriteLoader {
     }
 
     async load() {
-        const tiles = await spritelib.load("res/tiles.png");
-        const characters = await spritelib.load("res/characters.png");
+        const tiles = await spritelib.load("./res/tiles.png");
+        const characters = await spritelib.load("./res/characters.png");
 
         let lines = [];
         for (let i = 0; i < 8; i++) {
@@ -119,7 +119,7 @@ export default class SpriteLoader {
 
         let levelPromises = [];
         for (const name of names) {
-            levelPromises.push(spritelib.load(`res/levels/${name}.png`));
+            levelPromises.push(spritelib.load(`./res/levels/${name}.png`));
         }
         const levels = await Promise.all(levelPromises);
 

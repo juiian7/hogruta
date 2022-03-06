@@ -90,14 +90,17 @@ export default class GlobalStorage {
     }
 
     public getCheckpoints() {
+        if (!this.levels[this.currentLevelName]) return;
         return this.levels[this.currentLevelName].checkpoints;
     }
 
     public playerDied() {
+        if (!this.levels[this.currentLevelName]) return;
         this.levels[this.currentLevelName].deathCounter++;
     }
 
     public ateCookie(cookie: { x: number; y: number }) {
+        if (!this.levels[this.currentLevelName]) return;
         this.levels[this.currentLevelName].eatenCookies.push(cookie);
     }
 
